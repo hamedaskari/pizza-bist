@@ -31,11 +31,19 @@ function CreateOrder() {
   const totalCartPrice = useSelector(getTotalCartPrice);
 
   console.log('Total Cart Price:', totalCartPrice);
+
   const numericTotalCartPrice = totalCartPrice
-    ? totalCartPrice.replace(/,/g, '')
+    ? totalCartPrice.replace(/,/g, '').trim()
     : '0';
 
   const parsedTotalPrice = parseFloat(numericTotalCartPrice);
+
+  if (isNaN(parsedTotalPrice)) {
+    console.error(
+      'Parsed Total Price is NaN. Check the input value:',
+      numericTotalCartPrice
+    );
+  }
 
   const priorityPrice = withPriority ? 5000 : 0;
 
