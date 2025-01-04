@@ -8,12 +8,14 @@ function Menu() {
   const menu = useLoaderData();
   const { query } = useSearch();
 
-  const filteredMenu = menu.filter((pizza) =>
-    pizza.name.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredMenu = menu
+    .filter((pizza) => pizza.name.toLowerCase().includes(query.toLowerCase()))
+    .sort((a, b) => {
+      return a.soldOut === b.soldOut ? 0 : a.soldOut ? 1 : -1;
+    });
 
   return (
-    <ul className="divide-y divide-stone-200 px-2">
+    <ul className="mt-10 divide-y divide-stone-200 px-2">
       {filteredMenu.map((pizza) => (
         <MenuItem pizza={pizza} key={pizza.id} />
       ))}

@@ -40,7 +40,6 @@ function CreateOrder() {
         لطفا اطلاعات خود را وارد کنید !
       </h2>
 
-      {/* <Form method="POST" action="/order/new"> */}
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">نام شما</label>
@@ -122,15 +121,12 @@ export async function action({ request }) {
 
   const errors = {};
   if (!isValidPhone(order.phone))
-    errors.phone =
-      'Please give us your correct phone number. We might need it to contact you.';
+    errors.phone = 'لطفا شماره تماس را وارد کنید . تا با شما تماس بگیریم!';
 
   if (Object.keys(errors).length > 0) return errors;
 
-  // If everything is okay, create new order and redirect
   const newOrder = await createOrder(order);
 
-  // Do NOT overuse
   store.dispatch(clearCart());
 
   return redirect(`/order/${newOrder.id}`);
