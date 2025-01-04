@@ -29,8 +29,13 @@ function CreateOrder() {
 
   const cart = useSelector(getCart);
   const totalCartPrice = useSelector(getTotalCartPrice);
+
+  const numericTotalCartPrice = totalCartPrice
+    ? totalCartPrice.replace(/,/g, '')
+    : '0';
   const priorityPrice = withPriority ? 5000 : 0;
-  const totalPrice = +totalCartPrice.replace(/,/g, '') + priorityPrice;
+
+  const totalPrice = parseFloat(numericTotalCartPrice) + priorityPrice;
 
   if (!cart.length) return <EmptyCart />;
 
