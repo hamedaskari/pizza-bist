@@ -59,7 +59,7 @@ export const getTotalCartPrice = (state) => {
     (sum, item) => sum + item.totalPrice,
     0
   );
-  return totalPrice.toLocaleString();
+  return totalPrice;
 };
 
 export const getCurrentQuantityById = (id) => (state) =>

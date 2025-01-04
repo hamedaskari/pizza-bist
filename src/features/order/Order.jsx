@@ -8,7 +8,7 @@ function Order() {
   const fetcher = useFetcher();
   const [totalPrice, setTotalPrice] = useState(0);
   const [priority, setPriority] = useState(null);
-  console.log(order);
+
   useEffect(() => {
     if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu');
   }, [fetcher]);
@@ -25,7 +25,7 @@ function Order() {
   useEffect(() => {
     async function readCustomer() {
       const customer = await getCustomer(order_id);
-      console.log(customer);
+
       setPriority(customer[0].priority);
     }
     readCustomer();

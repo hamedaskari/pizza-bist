@@ -10,7 +10,7 @@ export async function getOrder(orderId) {
     if (error) {
       throw new Error(`Error fetching order: ${error.message}`);
     }
-    console.log(`order man : ${data}`);
+
     return data;
   } catch (error) {
     console.error('Failed to fetch order:', error);

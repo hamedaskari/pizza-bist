@@ -29,25 +29,8 @@ function CreateOrder() {
 
   const cart = useSelector(getCart);
   const totalCartPrice = useSelector(getTotalCartPrice);
-
-  console.log('Total Cart Price:', totalCartPrice);
-
-  const numericTotalCartPrice = totalCartPrice
-    ? totalCartPrice.replace(/,/g, '').trim()
-    : '0';
-
-  const parsedTotalPrice = parseFloat(numericTotalCartPrice);
-
-  if (isNaN(parsedTotalPrice)) {
-    console.error(
-      'Parsed Total Price is NaN. Check the input value:',
-      numericTotalCartPrice
-    );
-  }
-
   const priorityPrice = withPriority ? 5000 : 0;
-
-  const totalPrice = parsedTotalPrice + priorityPrice;
+  const totalPrice = totalCartPrice + priorityPrice;
 
   if (!cart.length) return <EmptyCart />;
 
@@ -56,7 +39,6 @@ function CreateOrder() {
       <h2 className="mb-8 text-xl font-semibold">
         لطفا اطلاعات خود را وارد کنید !
       </h2>
-
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">نام شما</label>
@@ -118,7 +100,9 @@ function CreateOrder() {
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
 
           <Button disabled={isSubmitting || isLoadingAddress} type="primary">
-            {isSubmitting ? 'ثبت سفارش...' : `جمع سفارش ${totalPrice} تومان`}
+            {isSubmitting
+              ? 'ثبت سفارش...'
+              : `جمع سفارش ${totalPrice.toLocaleString()} تومان`}
           </Button>
         </div>
       </Form>

@@ -1,9 +1,9 @@
-import LinkButton from '../../ui/LinkButton';
-import Button from '../../ui/Button';
-import CartItem from './CartItem';
-import EmptyCart from './EmptyCart';
 import { useDispatch, useSelector } from 'react-redux';
+import Button from '../../ui/Button';
+import LinkButton from '../../ui/LinkButton';
+import CartItem from './CartItem';
 import { clearCart, getCart } from './cartSlice';
+import EmptyCart from './EmptyCart';
 
 function Cart() {
   const username = useSelector((state) => state.user.username);
