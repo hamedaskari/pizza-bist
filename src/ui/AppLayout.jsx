@@ -14,8 +14,8 @@ function AppLayout() {
 
       <Header />
 
-      <div className="flex flex-col justify-between overflow-x-hidden">
-        <main className="mx-auto max-w-3xl">
+      <div className="flex w-full flex-col items-center justify-between overflow-x-hidden">
+        <main className="w-full max-w-3xl">
           <Outlet />
         </main>
         <Footer />
